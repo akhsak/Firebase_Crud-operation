@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "624312826756",
+    "project_id": "crud-dac51",
+    "storage_bucket": "crud-dac51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624312826756:android:1595ce32fe6c4438653bd1",
+        "android_client_info": {
+          "package_name": "com.example.crud_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcKWLiB8PB-uGZs0du8cgWair3vnSiF6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
