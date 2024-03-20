@@ -39,9 +39,11 @@ class _EditScreenState extends State<EditScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Edit details"),
+        title: textTitle(data: 'Edit details', size: 25),
+       backgroundColor: Color.fromARGB(255, 217, 29, 29),
         centerTitle: true,
       ),
+    
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 100),
@@ -49,34 +51,34 @@ class _EditScreenState extends State<EditScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 10,
+                height: 50,
               ),
               customTextFormField(
                 controller: nameController,
                 labelText: 'Name',
               ),
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
               customTextFormField(
                 controller: groupController,
                 labelText: 'group',
               ),
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
               customTextFormField(
                 controller: phoneController,
                 labelText: 'phone no',
               ),
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 26, 58, 118)),
+                      backgroundColor: const Color.fromARGB(255, 217, 29, 29)),
                   onPressed: () {
-                    editStudent(context);
+                    editDonor(context);
                   },
                   child: textPoppins(data: 'UPDATE', color: Colors.white))
             ],
@@ -86,7 +88,7 @@ class _EditScreenState extends State<EditScreen> {
     );
   }
 
-  editStudent(
+  editDonor(
     BuildContext context,
   ) async {
     final pro = Provider.of<DonorProvider>(context, listen: false);
@@ -96,27 +98,21 @@ class _EditScreenState extends State<EditScreen> {
       final editedPhone = phoneController.text;
       final editedgroup = groupController.text;
       final existingImage = widget.bloodgp.image;
-     // final existingEventType = widget.bloodgp.group;
+
       // Update image URL in Firestore
 
 
-      final updatedstudent= DonorModel(
+      final updateddonor= DonorModel(
         name: editedName, 
        phone: editedPhone,
          group: editedgroup,
          image: existingImage);
-       pro.updateStudent(widget.id, updatedstudent);
-      // final updatedstudent = DonorModel(
-      //     name: editedName,
-      //    // phone: editedPhone,
-      //     image: existingImage,
-      //     group: existingEventType);
-
-      // pro.updateStudent(widget.id, updatedstudent);
+       pro.updateDonor(widget.id, updateddonor);
+      
 
       Navigator.pop(context);
     } catch (e) {
-      log("Error updating student: $e");
+      log("Error updating donors: $e");
     }
   }
 }

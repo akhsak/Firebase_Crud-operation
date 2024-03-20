@@ -20,6 +20,8 @@ class AddScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        title: textTitle(data: 'Add Donor', size: 25),
+       backgroundColor: Color.fromARGB(255, 217, 29, 29),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -35,7 +37,6 @@ class AddScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              textTitle(data: 'Add Donor', size: 25),
               SizedBox(
                 height: mediaQuery.height * 0.8,
                 width: mediaQuery.width * 1,
@@ -49,8 +50,6 @@ class AddScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8.0),
                             child: SizedBox(
                               child: Image.asset('assets/image-profile.png'),
-                              // child: Lottie.asset('assets/Animation - 1709198344685.json',
-                              //     ),
                               height: mediaQuery.height * 0.25,
                               width: mediaQuery.width * 0.8,
                             )),
@@ -106,9 +105,6 @@ class AddScreen extends StatelessWidget {
                     customTextFormField(
                         controller: addProvider.nameController,
                         labelText: 'Name'),
-                    // customTextFormField(
-                    //     controller: addProvider.groupController,
-                    //     labelText: 'Age'),
                     dropDown(addProvider),
                     customTextFormField(
                         controller: addProvider.phoneController,

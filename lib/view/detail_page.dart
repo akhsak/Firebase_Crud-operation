@@ -11,7 +11,7 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   // Size mediaQuery = MediaQuery.of(context).size;
+    //Size mediaQuery = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -49,7 +49,7 @@ class DetailScreen extends StatelessWidget {
                   ),
                 ),
                 subtitle: Text(
-                  donor.name ,
+                  donor.name,
                   style: TextStyle(
                     fontSize: 20,
                   ),
@@ -59,7 +59,6 @@ class DetailScreen extends StatelessWidget {
                   color: Color.fromARGB(255, 217, 29, 29),
                 ),
               ),
-             
               const SizedBox(height: 10),
               ListTile(
                 title: Text(

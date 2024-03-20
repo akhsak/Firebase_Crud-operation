@@ -27,7 +27,7 @@ class DonorProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateStudent(String id, DonorModel student) async {
+  void updateDonor(String id, DonorModel student) async {
     await _firebaseService.bloodRef.doc(id).update(student.toJson());
     notifyListeners();
   }

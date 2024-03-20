@@ -6,7 +6,7 @@ Widget textTitle({String? data, double? size}) {
       style: GoogleFonts.aBeeZee(
           fontSize: size,
           fontWeight: FontWeight.bold,
-          color:  Color.fromARGB(255, 217, 29, 29)));
+          color:  Colors.white));
 }
 
 Widget textPoppins({String? data, color}) {

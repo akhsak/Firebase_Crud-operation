@@ -47,14 +47,15 @@ Widget dropDown(AddProvider addProvider) {
     return DropdownButtonFormField(
       validator: (value) {
         if (value == null) {
-          return "Choose a blood group"; // Update error message
+          return "Choose a blood group"; 
         } else {
           return null;
         }
       },
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
-        labelText: 'Blood group', // Change label to labelText
+        labelText: 'Blood group', 
+        
       ),
       value: addValue.selectedValue,
       items: <String>['A+', 'B+', 'O+', 'O-', 'AB-', 'AB+']
@@ -74,31 +75,3 @@ Widget dropDown(AddProvider addProvider) {
 }
 
 
-// Widget dropDown(AddProvider addProvider) {
-//   return Consumer<AddProvider>(builder: (context, addValue, child) {
-//     return DropdownButtonFormField(
-//       validator: (value) {
-//         if (value == null) {
-//           return "choose a plan";
-//         } else {
-//           return null;
-//         }
-//       },
-//       decoration: const InputDecoration(
-//           border: OutlineInputBorder(), label: Text('Blood group')),
-//       value: addValue.selectedValue,
-//       items: <String>['A+','B+','O+','O-','AB-','AB+']
-//           .map<DropdownMenuItem<String>>((String value) {
-//         return DropdownMenuItem<String>(
-//           value: value,
-//           child: Text(value),
-//         );
-//       }).toList(),
-//       onChanged: (String? newValue) {
-//         if (newValue != null) {
-//           addValue.setSelectedValue(newValue);
-//         }
-//       },
-//     );
-//   });
-// }
