@@ -1,116 +1,123 @@
 
+// ignore_for_file: avoid_print
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:developer';
+
+import 'package:crud_firebase/controller/homedonor_provider.dart';
+import 'package:crud_firebase/model/donor.model.dart';
+import 'package:crud_firebase/widget/text_formfield.dart';
+import 'package:crud_firebase/widget/text_style.dart';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class EditDonor extends StatefulWidget {
- // const EditDonor({Key? key}) : super(key: key);
- const EditDonor({super.key});
+// ignore: must_be_immutable
+class EditScreen extends StatefulWidget {
+  DonorModel bloodgp;
+  String id;
+  EditScreen({super.key, required this.id, required this.bloodgp});
 
   @override
-  State<EditDonor> createState() => _EditDonorState();
+  State<EditScreen> createState() => _EditScreenState();
 }
 
-class _EditDonorState extends State<EditDonor> {
-  final bloodgroup = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
-  String? selectedgroup;
-  final CollectionReference donor =
-      FirebaseFirestore.instance.collection('donor');
+class _EditScreenState extends State<EditScreen> {
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController groupController = TextEditingController();
 
-  TextEditingController donorName = TextEditingController();
-  TextEditingController donorPhone = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
 
-  void adddonor() {
-    if (donorName.text.isEmpty || donorPhone.text.isEmpty || selectedgroup == null) {
-      // Don't add the donor if any of the required fields are empty
-      return;
-    }
-    
-    // final data = {
-    //   'name': donorName.text,
-    //   'phone': donorPhone.text,
-    //   'group': selectedgroup,
-    // };
-    // donor.add(data);
+    nameController.text = widget.bloodgp.name ;
+    groupController.text = widget.bloodgp. group ;
+    phoneController.text = widget.bloodgp.phone;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Add Donors',
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.red,
+        title: const Text("Edit details"),
+        centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: donorName,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Donor Name',
-                ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 100),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 10,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: donorPhone,
-                keyboardType: TextInputType.number,
-                maxLength: 10,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Phone number',
-                ),
+              customTextFormField(
+                controller: nameController,
+                labelText: 'Name',
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: DropdownButtonFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Select blood group',
-                ),
-                value: selectedgroup,
-                items: bloodgroup
-                    .map(
-                      (e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(e),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (val) {
-                  setState(() {
-                    selectedgroup = val as String?;
-                  });
-                },
+              const SizedBox(
+                height: 10,
               ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                
-              },
-              style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
-                backgroundColor: MaterialStateProperty.all(Colors.red),
+              customTextFormField(
+                controller: groupController,
+                labelText: 'group',
               ),
-              child: const Text(
-                'Update',
-                style: TextStyle(color: Colors.white),
+              const SizedBox(
+                height: 10,
               ),
-            ),
-          ],
+              customTextFormField(
+                controller: phoneController,
+                labelText: 'phone no',
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 26, 58, 118)),
+                  onPressed: () {
+                    editStudent(context);
+                  },
+                  child: textPoppins(data: 'UPDATE', color: Colors.white))
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  editStudent(
+    BuildContext context,
+  ) async {
+    final pro = Provider.of<DonorProvider>(context, listen: false);
+
+    try {
+      final editedName = nameController.text;
+      final editedPhone = phoneController.text;
+      final editedgroup = groupController.text;
+      final existingImage = widget.bloodgp.image;
+     // final existingEventType = widget.bloodgp.group;
+      // Update image URL in Firestore
+
+
+      final updatedstudent= DonorModel(
+        name: editedName, 
+       phone: editedPhone,
+         group: editedgroup,
+         image: existingImage);
+       pro.updateStudent(widget.id, updatedstudent);
+      // final updatedstudent = DonorModel(
+      //     name: editedName,
+      //    // phone: editedPhone,
+      //     image: existingImage,
+      //     group: existingEventType);
+
+      // pro.updateStudent(widget.id, updatedstudent);
+
+      Navigator.pop(context);
+    } catch (e) {
+      log("Error updating student: $e");
+    }
   }
 }
 
