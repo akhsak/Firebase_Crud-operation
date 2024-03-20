@@ -16,6 +16,8 @@ class AddProvider extends ChangeNotifier {
   File? selectedImage;
   ImagePicker imagePicker = ImagePicker();
 
+  get formKey => null;
+
   void setImage(ImageSource source) async {
     final pickedImage = await imagePicker.pickImage(source: source);
 
