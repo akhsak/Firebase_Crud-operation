@@ -53,8 +53,11 @@ Widget dropDown(AddProvider addProvider) {
         }
       },
       decoration: const InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red)
+        ),
         border: OutlineInputBorder(),
-        labelText: 'Blood group', 
+        labelText: 'Blood group',labelStyle: TextStyle(color: Colors.red), 
         
       ),
       value: addValue.selectedValue,

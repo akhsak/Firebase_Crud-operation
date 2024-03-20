@@ -42,6 +42,13 @@ class _EditScreenState extends State<EditScreen> {
         title: textTitle(data: 'Edit details', size: 25),
        backgroundColor: Color.fromARGB(255, 217, 29, 29),
         centerTitle: true,
+         leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.white,
+        ),
       ),
     
       body: SingleChildScrollView(

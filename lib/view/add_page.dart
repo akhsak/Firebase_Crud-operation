@@ -27,6 +27,7 @@ class AddScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back),
+          color: Colors.amber,
         ),
       ),
       body: SingleChildScrollView(

@@ -11,7 +11,7 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Size mediaQuery = MediaQuery.of(context).size;
+    Size mediaQuery = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -19,6 +19,13 @@ class DetailScreen extends StatelessWidget {
               textPoppins(data: donor.name.toUpperCase(), color: Colors.white),
           centerTitle: true,
           backgroundColor: Color.fromARGB(255, 217, 29, 29),
+           leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.white,
+        ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -26,11 +33,11 @@ class DetailScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 150,
+                height: 250,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(30),
                   image: donor.image != null
                       ? DecorationImage(
                           image: NetworkImage(donor.image!),
