@@ -61,6 +61,7 @@ class _EditScreenState extends State<EditScreen> {
                 height: 50,
               ),
               customTextFormField(
+                 
                 controller: nameController,
                 labelText: 'Name',
               ),
@@ -68,6 +69,7 @@ class _EditScreenState extends State<EditScreen> {
                 height: 15,
               ),
               customTextFormField(
+                
                 controller: groupController,
                 labelText: 'group',
               ),
@@ -75,6 +77,7 @@ class _EditScreenState extends State<EditScreen> {
                 height: 15,
               ),
               customTextFormField(
+               
                 controller: phoneController,
                 labelText: 'phone no',
               ),

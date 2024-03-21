@@ -1,6 +1,9 @@
+
+
 // ignore_for_file: sort_child_properties_last, use_super_parameters, prefer_const_constructors_in_immutables
 
 import 'dart:io';
+
 import 'package:crud_firebase/controller/add_provider.dart';
 import 'package:crud_firebase/view/home_page.dart';
 import 'package:crud_firebase/widget/text_formfield.dart';
@@ -21,7 +24,7 @@ class AddScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: textTitle(data: 'Add Donor', size: 25),
-       backgroundColor: Color.fromARGB(255, 217, 29, 29),
+        backgroundColor: Color.fromARGB(255, 217, 29, 29),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

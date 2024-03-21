@@ -8,7 +8,10 @@ Widget customTextFormField(
     labelText,
     maxlength,
     List<TextInputFormatter>? inputFormatters,
-    TextInputType? keyboardType, required String? Function(dynamic value) validator}) {
+    TextInputType? keyboardType,
+   // required String? Function(dynamic value) validator
+   })
+    {
   return TextFormField(
     validator: (value) {
       if (value == null || value.isEmpty) {
@@ -23,10 +26,11 @@ Widget customTextFormField(
     maxLength: maxlength,
     decoration: InputDecoration(
       // Color.fromARGB(255, 26, 58, 118)
-      labelStyle: const TextStyle(color:const Color.fromARGB(255, 26, 58, 118)),
+      labelStyle:
+          const TextStyle(color: const Color.fromARGB(255, 26, 58, 118)),
       labelText: labelText,
       enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color:const Color.fromARGB(255, 26, 58, 118)),
+        borderSide: BorderSide(color: const Color.fromARGB(255, 26, 58, 118)),
       ),
       focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide(color: const Color.fromARGB(255, 26, 58, 118)),
@@ -41,24 +45,23 @@ Widget customTextFormField(
   );
 }
 
-
 Widget dropDown(AddProvider addProvider) {
   return Consumer<AddProvider>(builder: (context, addValue, child) {
     return DropdownButtonFormField(
       validator: (value) {
         if (value == null) {
-          return "Choose a blood group"; 
+          return "Choose a blood group";
         } else {
           return null;
         }
       },
       decoration: const InputDecoration(
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: const Color.fromARGB(255, 26, 58, 118))
-        ),
+            borderSide:
+                BorderSide(color: const Color.fromARGB(255, 26, 58, 118))),
         border: OutlineInputBorder(),
-        labelText: 'Blood group',labelStyle: TextStyle(color: const Color.fromARGB(255, 26, 58, 118)), 
-        
+        labelText: 'Blood group',
+        labelStyle: TextStyle(color: const Color.fromARGB(255, 26, 58, 118)),
       ),
       value: addValue.selectedValue,
       items: <String>['A+', 'B+', 'O+', 'O-', 'AB-', 'AB+']
@@ -76,5 +79,4 @@ Widget dropDown(AddProvider addProvider) {
     );
   });
 }
-
 
