@@ -9,12 +9,13 @@ Widget customTextFormField(
     maxlength,
     List<TextInputFormatter>? inputFormatters,
     TextInputType? keyboardType,
+    String? message,
    })
     {
   return TextFormField(
     validator: (value) {
       if (value == null || value.isEmpty) {
-        return 'Value is empty';
+        return message??'value is empty';
       } else {
         return null;
       }

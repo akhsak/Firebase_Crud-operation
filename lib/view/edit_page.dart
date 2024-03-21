@@ -1,8 +1,8 @@
-
 // ignore_for_file: avoid_print
 
 import 'dart:developer';
 
+import 'package:crud_firebase/controller/add_provider.dart';
 import 'package:crud_firebase/controller/homedonor_provider.dart';
 import 'package:crud_firebase/model/donor.model.dart';
 import 'package:crud_firebase/widget/text_formfield.dart';
@@ -30,19 +30,21 @@ class _EditScreenState extends State<EditScreen> {
   void initState() {
     super.initState();
 
-    nameController.text = widget.bloodgp.name ;
-    groupController.text = widget.bloodgp. group ;
+    nameController.text = widget.bloodgp.name;
+    groupController.text = widget.bloodgp.group;
     phoneController.text = widget.bloodgp.phone;
   }
 
   @override
   Widget build(BuildContext context) {
+    final addProvider = Provider.of<AddProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: textTitle(data: 'Edit details', size: 25),
-       backgroundColor: Color.fromARGB(255, 217, 29, 29),
+        backgroundColor: Color.fromARGB(255, 217, 29, 29),
         centerTitle: true,
-         leading: IconButton(
+        leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
@@ -50,48 +52,51 @@ class _EditScreenState extends State<EditScreen> {
           color: Colors.white,
         ),
       ),
-    
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 100),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 50,
-              ),
-              customTextFormField(
-                 
-                controller: nameController,
-                labelText: 'Name',
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              customTextFormField(
-                
-                controller: groupController,
-                labelText: 'group',
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              customTextFormField(
-               
-                controller: phoneController,
-                labelText: 'phone no',
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 217, 29, 29)),
-                  onPressed: () {
-                    editDonor(context);
-                  },
-                  child: textPoppins(data: 'UPDATE', color: Colors.white))
-            ],
+        child: Form(
+          key: addProvider.formKey,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 100),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                customTextFormField(
+                  controller: nameController,
+                  labelText: 'Name',
+                  message: 'Enter the name',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                customTextFormField(
+                    controller: groupController,
+                    labelText: 'group',
+                    message: 'Enter the blood group'),
+                const SizedBox(
+                  height: 15,
+                ),
+                customTextFormField(
+                    controller: phoneController,
+                    labelText: 'phone no',
+                    message: 'Enter the phone no'),
+                const SizedBox(
+                  height: 15,
+                ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color.fromARGB(255, 217, 29, 29)),
+                    onPressed: () {
+                      if (addProvider.formKey.currentState!.validate()) {
+                        editDonor(context);
+                      }
+                    },
+                    child: textPoppins(data: 'UPDATE', color: Colors.white))
+              ],
+            ),
           ),
         ),
       ),
@@ -111,14 +116,12 @@ class _EditScreenState extends State<EditScreen> {
 
       // Update image URL in Firestore
 
-
-      final updateddonor= DonorModel(
-        name: editedName, 
-       phone: editedPhone,
-         group: editedgroup,
-         image: existingImage);
-       pro.updateDonor(widget.id, updateddonor);
-      
+      final updateddonor = DonorModel(
+          name: editedName,
+          phone: editedPhone,
+          group: editedgroup,
+          image: existingImage);
+      pro.updateDonor(widget.id, updateddonor);
 
       Navigator.pop(context);
     } catch (e) {
@@ -126,6 +129,3 @@ class _EditScreenState extends State<EditScreen> {
     }
   }
 }
-
-
-

@@ -23,7 +23,7 @@ class AddScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: textTitle(data: 'Add Donor', size: 25),
+        title: textTitle(data:'Add Donor', size: 25),
         backgroundColor: Color.fromARGB(255, 217, 29, 29),
         leading: IconButton(
           onPressed: () {
@@ -35,112 +35,118 @@ class AddScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: mediaQuery.height * 0.8,
-                width: mediaQuery.width * 1,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    if (addProvider.selectedImage == null)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5.0),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: SizedBox(
-                              child: Image.asset('assets/image-profile.png'),
-                              height: mediaQuery.height * 0.25,
-                              width: mediaQuery.width * 0.8,
-                            )),
-                      )
-                    else
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: Consumer<AddProvider>(
-                          builder: (context, value, child) => ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.file(
-                              File(value.selectedImage!.path),
-                              height: mediaQuery.height * 0.2,
-                              width: mediaQuery.width * 0.8,
-                              fit: BoxFit.cover,
+        child: Form(
+          key:addProvider.formKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: mediaQuery.height * 0.8,
+                  width: mediaQuery.width * 1,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      if (addProvider.selectedImage == null)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5.0),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: SizedBox(
+                                child: Image.asset('assets/image-profile.png'),
+                                height: mediaQuery.height * 0.25,
+                                width: mediaQuery.width * 0.8,
+                              )),
+                        )
+                      else
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: Consumer<AddProvider>(
+                            builder: (context, value, child) => ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.file(
+                                File(value.selectedImage!.path),
+                                height: mediaQuery.height * 0.2,
+                                width: mediaQuery.width * 0.8,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Color.fromARGB(255, 217, 29, 29)),
-                          onPressed: () {
-                            addProvider.setImage(ImageSource.camera);
-                          },
-                          icon: const Icon(
-                            Icons.camera_alt,
-                            color: Colors.white,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Color.fromARGB(255, 217, 29, 29)),
+                            onPressed: () {
+                              addProvider.setImage(ImageSource.camera);
+                            },
+                            icon: const Icon(
+                              Icons.camera_alt,
+                              color: Colors.white,
+                            ),
+                            label: textPoppins(
+                              data: 'Camera',
+                              color: Colors.white,
+                            ),
                           ),
-                          label: textPoppins(
-                            data: 'Camera',
-                            color: Colors.white,
+                          const SizedBox(width: 14.0),
+                          ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Color.fromARGB(255, 217, 29, 29)),
+                            onPressed: () {
+                              addProvider.setImage(ImageSource.gallery);
+                            },
+                            icon: const Icon(Icons.photo, color: Colors.white),
+                            label:
+                                textPoppins(data: 'Gallery', color: Colors.white),
                           ),
-                        ),
-                        const SizedBox(width: 14.0),
-                        ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Color.fromARGB(255, 217, 29, 29)),
-                          onPressed: () {
-                            addProvider.setImage(ImageSource.gallery);
-                          },
-                          icon: const Icon(Icons.photo, color: Colors.white),
-                          label:
-                              textPoppins(data: 'Gallery', color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    customTextFormField(
-                        controller: addProvider.nameController,
-                        labelText: 'Name'),
-                    dropDown(addProvider),
-                    customTextFormField(
-                        controller: addProvider.phoneController,
-                        labelText: 'Phone ',
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly
                         ],
-                        maxlength: 10,
-                        keyboardType: TextInputType.number),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 217, 29, 29)),
-                      onPressed: () {
-                        addProvider.addStudent(context);
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
-                          ),
-                        );
-                        addProvider.selectedImage = null;
-                      },
-                      child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: textPoppins(data: 'ADD', color: Colors.white)),
-                    ),
-                  ],
+                      ),
+                      customTextFormField(
+                          controller: addProvider.nameController,
+                          labelText: 'Name',message: 'Enter the name'),
+                      dropDown(addProvider),
+                      customTextFormField(
+                          controller: addProvider.phoneController,
+                          labelText: 'Phone no ',message: 'Enter the phone number',
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          maxlength: 10,
+                          keyboardType: TextInputType.number),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 217, 29, 29)),
+                        onPressed: () {
+                          if(addProvider.formKey.currentState!.validate()){
+                              addProvider.addStudent(context);
+          
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomeScreen(),
+                            ),
+                          );
+                          addProvider.selectedImage = null;
+                          }
+                        
+                        },
+                        child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: textPoppins(data: 'ADD', color: Colors.white)),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-            ],
+                const SizedBox(height: 16),
+              ],
+            ),
           ),
         ),
       ),

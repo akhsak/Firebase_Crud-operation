@@ -12,11 +12,11 @@ class AddProvider extends ChangeNotifier {
   TextEditingController phoneController = TextEditingController();
 
   String selectedValue = 'A+';
+    final formKey = GlobalKey<FormState>();
 
   File? selectedImage;
   ImagePicker imagePicker = ImagePicker();
 
-  get formKey => null;
 
   void setImage(ImageSource source) async {
     final pickedImage = await imagePicker.pickImage(source: source);
@@ -45,12 +45,12 @@ class AddProvider extends ChangeNotifier {
 
     donorProvider.imageAdder(File(selectedImage!.path));
 
-    final event = DonorModel(
+    final donor = DonorModel(
         phone: phone,
         name: name,
         image: donorProvider.downloadurl,
         group: group);
-    donorProvider.addDonor(event);
+    donorProvider.addDonor(donor);
     clearTextField();
   }
 }
