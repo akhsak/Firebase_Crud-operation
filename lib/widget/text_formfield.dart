@@ -9,7 +9,6 @@ Widget customTextFormField(
     maxlength,
     List<TextInputFormatter>? inputFormatters,
     TextInputType? keyboardType,
-   // required String? Function(dynamic value) validator
    })
     {
   return TextFormField(
