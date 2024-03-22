@@ -1,6 +1,3 @@
-
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud_firebase/model/donor.model.dart';
 import 'package:crud_firebase/service/donor_servide.dart';
@@ -8,8 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class DonorProvider extends ChangeNotifier {
-  // ignore: prefer_final_fields
-  FirebaseService _firebaseService = FirebaseService();
+  final FirebaseService _firebaseService = FirebaseService();
   String uniquename = DateTime.now().microsecondsSinceEpoch.toString();
   String downloadurl = '';
 

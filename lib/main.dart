@@ -1,6 +1,6 @@
 import 'package:crud_firebase/controller/add_provider.dart';
 import 'package:crud_firebase/controller/homedonor_provider.dart';
-import 'package:crud_firebase/service/firebase_options.dart';
+import 'package:crud_firebase/firebase_options.dart';
 import 'package:crud_firebase/view/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     ChangeNotifierProvider(create: (context)=>AddProvider()),
 
     ],
-      child: MaterialApp(
+      child:const MaterialApp(
        debugShowCheckedModeBanner: false,
         home: HomeScreen(),
       ),
