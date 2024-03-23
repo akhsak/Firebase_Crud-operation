@@ -81,7 +81,7 @@ class AddScreen extends StatelessWidget {
                           ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                    Color.fromARGB(255, 217, 29, 29)),
+                                   const Color.fromARGB(255, 217, 29, 29)),
                             onPressed: () {
                               addProvider.setImage(ImageSource.camera);
                             },
