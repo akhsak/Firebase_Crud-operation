@@ -35,7 +35,7 @@ class DonorProvider extends ChangeNotifier {
     await images.putFile(image);
     downloadurl = await images.getDownloadURL();
     notifyListeners();
-    print(downloadurl);
+   // print(downloadurl);
   } catch (e) {
     throw Exception(e);
   }}
