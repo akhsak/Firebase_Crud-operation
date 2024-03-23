@@ -24,7 +24,7 @@ class AddScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: textTitle(data:'Add Donor', size: 25),
-        backgroundColor: Color.fromARGB(255, 217, 29, 29),
+        backgroundColor:const Color.fromARGB(255, 217, 29, 29),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -98,7 +98,7 @@ class AddScreen extends StatelessWidget {
                           ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                    Color.fromARGB(255, 217, 29, 29)),
+                                   const Color.fromARGB(255, 217, 29, 29)),
                             onPressed: () {
                               addProvider.setImage(ImageSource.gallery);
                             },
@@ -122,7 +122,7 @@ class AddScreen extends StatelessWidget {
                           keyboardType: TextInputType.number),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 217, 29, 29)),
+                            backgroundColor:const Color.fromARGB(255, 217, 29, 29)),
                         onPressed: () {
                           if(addProvider.formKey.currentState!.validate()){
                               addProvider.addStudent(context);
