@@ -42,7 +42,7 @@ class _EditScreenState extends State<EditScreen> {
     return Scaffold(
       appBar: AppBar(
         title: textTitle(data: 'Edit details', size: 25),
-        backgroundColor: Color.fromARGB(255, 217, 29, 29),
+        backgroundColor:const Color.fromARGB(255, 217, 29, 29),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {

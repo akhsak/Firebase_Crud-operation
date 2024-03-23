@@ -7,7 +7,7 @@ import 'package:crud_firebase/view/edit_page.dart';
 import 'package:crud_firebase/widget/text_style.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+//import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,14 +19,14 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
                 title: textTitle(data:'Home',size: 25),
 
-       backgroundColor: Color.fromARGB(255, 217, 29, 29),
+       backgroundColor:const Color.fromARGB(255, 217, 29, 29),
 
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 40, left: 10),
+       const Padding(
+            padding:  EdgeInsets.only(top: 40, left: 10),
           ),
           Expanded(
             child: Consumer<DonorProvider>(
