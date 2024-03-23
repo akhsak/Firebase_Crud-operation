@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:crud_firebase/controller/homedonor_provider.dart';
+import 'package:crud_firebase/controller/home_donor_provider.dart';
 import 'package:crud_firebase/model/donor.model.dart';
 
 import 'package:flutter/material.dart';
@@ -11,12 +11,11 @@ class AddProvider extends ChangeNotifier {
   TextEditingController groupController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-  String selectedValue = 'A+';
-    final formKey = GlobalKey<FormState>();
+  String? selectedValue;
+  final formKey = GlobalKey<FormState>();
 
   File? selectedImage;
   ImagePicker imagePicker = ImagePicker();
-
 
   void setImage(ImageSource source) async {
     final pickedImage = await imagePicker.pickImage(source: source);
@@ -34,6 +33,7 @@ class AddProvider extends ChangeNotifier {
     nameController.clear();
     groupController.clear();
     phoneController.clear();
+    selectedValue = null;
   }
 
   void addStudent(BuildContext context) {
@@ -41,7 +41,6 @@ class AddProvider extends ChangeNotifier {
 
     final name = nameController.text;
     final phone = phoneController.text;
-    final group = selectedValue;
 
     donorProvider.imageAdder(File(selectedImage!.path));
 
@@ -49,7 +48,7 @@ class AddProvider extends ChangeNotifier {
         phone: phone,
         name: name,
         image: donorProvider.downloadurl,
-        group: group);
+        group: selectedValue ?? '');
     donorProvider.addDonor(donor);
     clearTextField();
   }

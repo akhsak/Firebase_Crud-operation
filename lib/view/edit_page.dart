@@ -3,7 +3,7 @@
 import 'dart:developer';
 
 import 'package:crud_firebase/controller/add_provider.dart';
-import 'package:crud_firebase/controller/homedonor_provider.dart';
+import 'package:crud_firebase/controller/home_donor_provider.dart';
 import 'package:crud_firebase/model/donor.model.dart';
 import 'package:crud_firebase/widget/text_formfield.dart';
 import 'package:crud_firebase/widget/text_style.dart';
@@ -42,7 +42,7 @@ class _EditScreenState extends State<EditScreen> {
     return Scaffold(
       appBar: AppBar(
         title: textTitle(data: 'Edit details', size: 25),
-        backgroundColor:const Color.fromARGB(255, 217, 29, 29),
+        backgroundColor: Color.fromARGB(255, 217, 29, 29),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {

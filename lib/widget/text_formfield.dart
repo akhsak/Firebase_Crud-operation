@@ -27,13 +27,13 @@ Widget customTextFormField(
     decoration: InputDecoration(
       // Color.fromARGB(255, 26, 58, 118)
       labelStyle:
-          const TextStyle(color: Color.fromARGB(255, 26, 58, 118)),
+          const TextStyle(color: const Color.fromARGB(255, 26, 58, 118)),
       labelText: labelText,
       enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Color.fromARGB(255, 26, 58, 118)),
+        borderSide: BorderSide(color: const Color.fromARGB(255, 26, 58, 118)),
       ),
       focusedBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color:  Color.fromARGB(255, 26, 58, 118)),
+        borderSide: BorderSide(color: const Color.fromARGB(255, 26, 58, 118)),
       ),
       errorBorder: const OutlineInputBorder(
         borderSide: BorderSide(color: Colors.red),
@@ -58,10 +58,10 @@ Widget dropDown(AddProvider addProvider) {
       decoration: const InputDecoration(
         focusedBorder: OutlineInputBorder(
             borderSide:
-                BorderSide(color:  Color.fromARGB(255, 26, 58, 118))),
+                BorderSide(color: const Color.fromARGB(255, 26, 58, 118))),
         border: OutlineInputBorder(),
         labelText: 'Blood group',
-        labelStyle: TextStyle(color:  Color.fromARGB(255, 26, 58, 118)),
+        labelStyle: TextStyle(color: const Color.fromARGB(255, 26, 58, 118)),
       ),
       value: addValue.selectedValue,
       items: <String>['A+', 'B+', 'O+', 'O-', 'AB-', 'AB+']
