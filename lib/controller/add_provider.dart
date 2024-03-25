@@ -13,6 +13,8 @@ class AddProvider extends ChangeNotifier {
 
   String? selectedValue;
   final formKey = GlobalKey<FormState>();
+    final editformKey = GlobalKey<FormState>();
+
 
   File? selectedImage;
   ImagePicker imagePicker = ImagePicker();

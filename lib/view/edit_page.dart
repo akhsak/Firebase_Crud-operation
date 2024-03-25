@@ -11,7 +11,6 @@ import 'package:crud_firebase/widget/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-// ignore: must_be_immutable
 class EditScreen extends StatefulWidget {
   DonorModel bloodgp;
   String id;
@@ -54,7 +53,7 @@ class _EditScreenState extends State<EditScreen> {
       ),
       body: SingleChildScrollView(
         child: Form(
-          key: addProvider.formKey,
+          key: addProvider.editformKey,
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, bottom: 100),
             child: Column(
@@ -90,7 +89,7 @@ class _EditScreenState extends State<EditScreen> {
                         backgroundColor:
                             const Color.fromARGB(255, 217, 29, 29)),
                     onPressed: () {
-                      if (addProvider.formKey.currentState!.validate()) {
+                      if (addProvider.editformKey.currentState!.validate()) {
                         editDonor(context);
                       }
                     },
@@ -112,7 +111,7 @@ class _EditScreenState extends State<EditScreen> {
       final editedName = nameController.text;
       final editedPhone = phoneController.text;
       final editedgroup = groupController.text;
-      final existingImage = widget.bloodgp.image;
+     final existingImage = widget.bloodgp.image;
 
       // Update image URL in Firestore
 
@@ -120,7 +119,8 @@ class _EditScreenState extends State<EditScreen> {
           name: editedName,
           phone: editedPhone,
           group: editedgroup,
-          image: existingImage);
+         image: existingImage
+          );
       pro.updateDonor(widget.id, updateddonor);
 
       Navigator.pop(context);
