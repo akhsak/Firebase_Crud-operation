@@ -17,8 +17,8 @@ class AddScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final addProvider = Provider.of<AddProvider>(context, listen: false);
-   // final mediaQuery = MediaQuery.of(context).size;
- final formKey = GlobalKey<FormState>();
+    // final mediaQuery = MediaQuery.of(context).size;
+    final formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         title: textTitle(data: 'Add Donor', size: 25),
@@ -42,7 +42,6 @@ class AddScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -53,8 +52,8 @@ class AddScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8.0),
                               child: SizedBox(
                                 child: Image.asset('assets/image-profile.png'),
-                                height: 100,
-                                width:50,
+                                height: 200,
+                                width: double.infinity,
                               )),
                         )
                       else
@@ -65,7 +64,7 @@ class AddScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8.0),
                               child: Image.file(
                                 File(value.selectedImage!.path),
-                                height:100,
+                                height: 100,
                                 width: 50,
                                 fit: BoxFit.cover,
                               ),
@@ -105,18 +104,21 @@ class AddScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 20),
                       customTextFormField(
                           controller: addProvider.nameController,
                           labelText: 'Name',
                           message: 'Enter the name'),
+                      const SizedBox(height: 20),
                       dropDown(addProvider),
+                      const SizedBox(height: 20),
                       customTextFormField(
                           controller: addProvider.phoneController,
                           labelText: 'Phone no ',
                           message: 'Enter the phone number',
-                         inputFormatters: [
+                          inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
-                          ], 
+                          ],
                           maxlength: 10,
                           keyboardType: TextInputType.number),
                       ElevatedButton(
