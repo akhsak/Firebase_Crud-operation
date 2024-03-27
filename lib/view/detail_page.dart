@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, use_super_parameters
 
-import 'package:crud_firebase/model/donor.model.dart';
+import 'package:crud_firebase/model/donor_model.dart';
 import 'package:crud_firebase/widget/text_style.dart';
 import 'package:flutter/material.dart';
 

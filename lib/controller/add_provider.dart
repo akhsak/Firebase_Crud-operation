@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:crud_firebase/controller/home_donor_provider.dart';
-import 'package:crud_firebase/model/donor.model.dart';
+import 'package:crud_firebase/model/donor_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,8 +13,6 @@ class AddProvider extends ChangeNotifier {
 
   String? selectedValue;
   final formKey = GlobalKey<FormState>();
-    final editformKey = GlobalKey<FormState>();
-
 
   File? selectedImage;
   ImagePicker imagePicker = ImagePicker();

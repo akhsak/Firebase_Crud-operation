@@ -1,32 +1,28 @@
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud_firebase/controller/home_donor_provider.dart';
-import 'package:crud_firebase/model/donor.model.dart';
+import 'package:crud_firebase/model/donor_model.dart';
 import 'package:crud_firebase/view/add_page.dart';
 import 'package:crud_firebase/view/detail_page.dart';
 import 'package:crud_firebase/view/edit_page.dart';
 import 'package:crud_firebase/widget/text_style.dart';
-
-import 'package:flutter/material.dart';
-//import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-                title: textTitle(data:'Home',size: 25),
-
-       backgroundColor:const Color.fromARGB(255, 217, 29, 29),
-
+        title: textTitle(data: 'Home', size: 25),
+        backgroundColor: const Color.fromARGB(255, 217, 29, 29),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-       const Padding(
-            padding:  EdgeInsets.only(top: 40, left: 10),
+          const Padding(
+            padding: EdgeInsets.only(top: 40, left: 10),
           ),
           Expanded(
             child: Consumer<DonorProvider>(
@@ -97,8 +93,43 @@ class HomeScreen extends StatelessWidget {
                                     Icons.delete,
                                     color: Colors.red,
                                   ),
-                                  onPressed: () {
-                                    value.deleteStudent(id);
+                                  onPressed: () async {
+                                    bool deleted = await showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Delete Donor'),
+                                          content: const Text(
+                                              'Are you sure you want to delete this donor?'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context)
+                                                    .pop(false);
+                                              },
+                                              child: const Text('No'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop(true);
+                                              },
+                                              child: const Text('Yes'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+
+                                    if (deleted) {
+                                      value.deleteStudent(id);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text('Successfully deleted'),
+                                          backgroundColor: Colors.green,
+                                        ),
+                                      );
+                                    }
                                   },
                                 ),
                                 IconButton(
@@ -127,7 +158,6 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        
         onPressed: () {
           Navigator.push(
             context,
@@ -136,13 +166,13 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         },
-        backgroundColor:const Color.fromARGB(255, 217, 29, 29),
+        backgroundColor: const Color.fromARGB(255, 217, 29, 29),
         child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
       ),
-       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

@@ -1,5 +1,3 @@
-
-
 // ignore_for_file: sort_child_properties_last, use_super_parameters, prefer_const_constructors_in_immutables
 
 import 'dart:io';
@@ -19,12 +17,12 @@ class AddScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final addProvider = Provider.of<AddProvider>(context, listen: false);
-    final mediaQuery = MediaQuery.of(context).size;
-
+   // final mediaQuery = MediaQuery.of(context).size;
+ final formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
-        title: textTitle(data:'Add Donor', size: 25),
-        backgroundColor:const Color.fromARGB(255, 217, 29, 29),
+        title: textTitle(data: 'Add Donor', size: 25),
+        backgroundColor: const Color.fromARGB(255, 217, 29, 29),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -36,7 +34,7 @@ class AddScreen extends StatelessWidget {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Form(
-          key:addProvider.formKey,
+          key: formKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
             child: Column(
@@ -44,8 +42,7 @@ class AddScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: mediaQuery.height * 0.8,
-                  width: mediaQuery.width * 1,
+                  
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -56,8 +53,8 @@ class AddScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8.0),
                               child: SizedBox(
                                 child: Image.asset('assets/image-profile.png'),
-                                height: mediaQuery.height * 0.25,
-                                width: mediaQuery.width * 0.8,
+                                height: 100,
+                                width:50,
                               )),
                         )
                       else
@@ -68,8 +65,8 @@ class AddScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8.0),
                               child: Image.file(
                                 File(value.selectedImage!.path),
-                                height: mediaQuery.height * 0.2,
-                                width: mediaQuery.width * 0.8,
+                                height:100,
+                                width: 50,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -81,7 +78,7 @@ class AddScreen extends StatelessWidget {
                           ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                   const Color.fromARGB(255, 217, 29, 29)),
+                                    const Color.fromARGB(255, 217, 29, 29)),
                             onPressed: () {
                               addProvider.setImage(ImageSource.camera);
                             },
@@ -98,48 +95,51 @@ class AddScreen extends StatelessWidget {
                           ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                   const Color.fromARGB(255, 217, 29, 29)),
+                                    const Color.fromARGB(255, 217, 29, 29)),
                             onPressed: () {
                               addProvider.setImage(ImageSource.gallery);
                             },
                             icon: const Icon(Icons.photo, color: Colors.white),
-                            label:
-                                textPoppins(data: 'Gallery', color: Colors.white),
+                            label: textPoppins(
+                                data: 'Gallery', color: Colors.white),
                           ),
                         ],
                       ),
                       customTextFormField(
                           controller: addProvider.nameController,
-                          labelText: 'Name',message: 'Enter the name'),
+                          labelText: 'Name',
+                          message: 'Enter the name'),
                       dropDown(addProvider),
                       customTextFormField(
                           controller: addProvider.phoneController,
-                          labelText: 'Phone no ',message: 'Enter the phone number',
-                          inputFormatters: [
+                          labelText: 'Phone no ',
+                          message: 'Enter the phone number',
+                         inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
-                          ],
+                          ], 
                           maxlength: 10,
                           keyboardType: TextInputType.number),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor:const Color.fromARGB(255, 217, 29, 29)),
+                            backgroundColor:
+                                const Color.fromARGB(255, 217, 29, 29)),
                         onPressed: () {
-                          if(addProvider.formKey.currentState!.validate()){
-                              addProvider.addStudent(context);
-          
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomeScreen(),
-                            ),
-                          );
-                          addProvider.selectedImage = null;
+                          if (formKey.currentState!.validate()) {
+                            addProvider.addStudent(context);
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomeScreen(),
+                              ),
+                            );
+                            addProvider.selectedImage = null;
                           }
-                        
                         },
                         child: Padding(
                             padding: const EdgeInsets.all(12.0),
-                            child: textPoppins(data: 'ADD', color: Colors.white)),
+                            child:
+                                textPoppins(data: 'ADD', color: Colors.white)),
                       ),
                     ],
                   ),

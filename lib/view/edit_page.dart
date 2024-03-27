@@ -4,7 +4,7 @@ import 'dart:developer';
 
 import 'package:crud_firebase/controller/add_provider.dart';
 import 'package:crud_firebase/controller/home_donor_provider.dart';
-import 'package:crud_firebase/model/donor.model.dart';
+import 'package:crud_firebase/model/donor_model.dart';
 import 'package:crud_firebase/widget/text_formfield.dart';
 import 'package:crud_firebase/widget/text_style.dart';
 
@@ -24,6 +24,7 @@ class _EditScreenState extends State<EditScreen> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController groupController = TextEditingController();
+    final editformKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -53,7 +54,7 @@ class _EditScreenState extends State<EditScreen> {
       ),
       body: SingleChildScrollView(
         child: Form(
-          key: addProvider.editformKey,
+          key: editformKey,
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, bottom: 100),
             child: Column(
@@ -89,7 +90,7 @@ class _EditScreenState extends State<EditScreen> {
                         backgroundColor:
                             const Color.fromARGB(255, 217, 29, 29)),
                     onPressed: () {
-                      if (addProvider.editformKey.currentState!.validate()) {
+                      if (editformKey.currentState!.validate()) {
                         editDonor(context);
                       }
                     },

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crud_firebase/model/donor.model.dart';
+import 'package:crud_firebase/model/donor_model.dart';
 import 'package:crud_firebase/service/donor_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -32,10 +32,10 @@ class DonorProvider extends ChangeNotifier {
   Reference folder = _firebaseService.storage.ref().child('images');
   Reference images = folder.child("$uniquename.jpg");
   try {
-    await images.putFile(image);
+   await images.putFile(image);
     downloadurl = await images.getDownloadURL();
     notifyListeners();
-   // print(downloadurl);
+    print(downloadurl);
   } catch (e) {
     throw Exception(e);
   }}
